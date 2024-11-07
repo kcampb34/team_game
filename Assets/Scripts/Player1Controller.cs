@@ -8,7 +8,7 @@ public class Player1Controller : MonoBehaviour
     public float verticalInput;
     public float speed = 10.0f;
     private float turnSpeed = 50;
-    public float xRange = 700;
+    public float yRange = 700;
     public float zRange = 700;
 
     // Start is called before the first frame update
@@ -21,14 +21,14 @@ public class Player1Controller : MonoBehaviour
     void Update()
     {
         // Keeping the player in bounds
-        if (transform.position.x < -xRange)
+        if (transform.position.y < -yRange)
         {
-            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -yRange, transform.position.z);
         }
 
-        if (transform.position.x > xRange)
+        if (transform.position.y > yRange)
         {
-            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -yRange, transform.position.z);
         }
 
         if (transform.position.z < -zRange)
@@ -44,8 +44,11 @@ public class Player1Controller : MonoBehaviour
 
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        transform.Rotate(Vector3.up * horizontalInput * turnSpeed * Time.deltaTime);
-        transform.Translate(Vector3.right * -verticalInput * Time.deltaTime * speed);
+        transform.Rotate(Vector3.forward * -horizontalInput * turnSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.forward * verticalInput * turnSpeed * Time.deltaTime);
+        transform.Translate(Vector3.right * verticalInput * Time.deltaTime * speed);
+        transform.Translate(Vector3.up * -horizontalInput * Time.deltaTime * speed);
+
 
     }
 }
