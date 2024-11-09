@@ -7,9 +7,15 @@ public class Player1Controller : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
     public float speed = 10.0f;
-    private float turnSpeed = 50;
+    public float turnSpeed = 50;
     public float yRange = 700;
     public float zRange = 700;
+
+    public float moveSpeed = 5f;  // Speed at which the player moves
+    private Vector2 movement;     // Stores the movement direction
+
+    public GameObject bulletPrefab;
+    public Transform shootTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -41,14 +47,48 @@ public class Player1Controller : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, zRange);
         }
 
+        movement = Vector2.zero;
 
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-        transform.Rotate(Vector3.forward * -horizontalInput * turnSpeed * Time.deltaTime);
-        transform.Rotate(Vector3.forward * verticalInput * turnSpeed * Time.deltaTime);
-        transform.Translate(Vector3.right * verticalInput * Time.deltaTime * speed);
-        transform.Translate(Vector3.up * -horizontalInput * Time.deltaTime * speed);
+        // Check each arrow key for movement and rotation
+        if (Input.GetKey(KeyCode.W))
+        {
+            movement = Vector2.up;
+            RotatePlayer(0f);     // Up direction
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            movement = Vector2.down;
+            RotatePlayer(180f);   // Down direction
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            movement = Vector2.right;
+            RotatePlayer(-90f);    // Right direction
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            movement = Vector2.left;
+            RotatePlayer(-270f);   // Left direction
+        }
 
+        // Move the player
+        transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World);
 
+        PewPew();
+
+    }
+
+    void RotatePlayer(float angle)
+    {
+        // Apply the rotation to the player
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+
+    void PewPew() 
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        { 
+            Instantiate(bulletPrefab, shootTransform.position, transform.rotation);
+        }
     }
 }
