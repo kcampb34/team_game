@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6900797566230659353}
   - component: {fileID: 204769266291758108}
   m_Layer: 0
-  m_Name: Bullet Bob
-  m_TagString: Untagged
+  m_Name: Bullet Bob Player 1
+  m_TagString: Bullet 1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,3 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  yRange: 8
+  xRange: 11

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1Controller : MonoBehaviour
+public class Player2Controller : MonoBehaviour
 {
     public float horizontalInput;
     public float verticalInput;
@@ -50,22 +50,22 @@ public class Player1Controller : MonoBehaviour
         movement = Vector2.zero;
 
         // Check each arrow key for movement and rotation
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             movement = Vector2.up;
             RotatePlayer(0f);     // Up direction
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
             movement = Vector2.down;
             RotatePlayer(180f);   // Down direction
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             movement = Vector2.right;
             RotatePlayer(-90f);    // Right direction
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
             movement = Vector2.left;
             RotatePlayer(-270f);   // Left direction
@@ -84,12 +84,11 @@ public class Player1Controller : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
-    void PewPew() 
+    void PewPew()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        { 
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
             Instantiate(bulletPrefab, shootTransform.position, transform.rotation);
         }
     }
-
 }
