@@ -91,4 +91,12 @@ public class Player2Controller : MonoBehaviour
             Instantiate(bulletPrefab, shootTransform.position, transform.rotation);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Bullet 1")
+        {
+            Debug.Log("PLAYER 2 DOWN");
+        }
+    }
 }
