@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet 2
   - Bullet 1
+  - Line
   layers:
   - Default
   - TransparentFX

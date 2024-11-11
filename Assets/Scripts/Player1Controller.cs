@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Player1Controller : MonoBehaviour
 {
@@ -17,11 +19,26 @@ public class Player1Controller : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform shootTransform;
 
+    GameManagerP1 gameManager;
+
+    //public int lap;
+    //public TextMeshProUGUI lapText;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManagerP1").GetComponent<GameManagerP1>();
 
+        //lap = 0;
+        //UpdateLap(0);
     }
+
+    //public void UpdateLap(int lapToAdd)
+    //{
+        //lap += lapToAdd;
+        //lapText.text = $"{lap}/3";
+    //}
+
 
     // Update is called once per frame
     void Update()
@@ -94,10 +111,29 @@ public class Player1Controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (col.gameObject.tag == "Line")
+        {
+            gameManager.UpdateLap(1);
+
+        }
+
         if (col.gameObject.tag == "Bullet 2")
         {
             Debug.Log("PLAYER 1 DOWN");
+            StartCoroutine(freezeMovement());
+
         }
     }
+
+    IEnumerator freezeMovement()
+    {
+        moveSpeed = 0f;
+
+        yield return new WaitForSeconds(2f);
+
+        moveSpeed = 5.0f;
+    }
+
+
 
 }

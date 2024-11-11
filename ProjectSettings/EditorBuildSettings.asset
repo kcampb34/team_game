@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 5a8301a25e2eec64ebc7c280526b1749
+  - enabled: 1
+    path: Assets/Scenes/Tiny Red.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Chocolate Arcade.unity
+    guid: 93e066de02d799949b2951116e3f647c
+  - enabled: 1
+    path: Assets/Scenes/Frog Manufacturing ComplexFacility.unity
+    guid: 5a2103f4840f1ff4fa96a999851acb50
   m_configObjects: {}

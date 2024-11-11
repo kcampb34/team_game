@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Player2Controller : MonoBehaviour
 {
@@ -17,10 +19,12 @@ public class Player2Controller : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform shootTransform;
 
+    GameManagerP2 gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        gameManager = GameObject.Find("GameManagerP2").GetComponent<GameManagerP2>();
     }
 
     // Update is called once per frame
@@ -94,9 +98,27 @@ public class Player2Controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (col.gameObject.tag == "Line")
+        {
+            gameManager.UpdateLap(1);
+
+        }
+
         if (col.gameObject.tag == "Bullet 1")
         {
             Debug.Log("PLAYER 2 DOWN");
+            StartCoroutine(freezeMovement());
+
         }
     }
+
+    IEnumerator freezeMovement()
+    {
+        moveSpeed = 0f;
+
+        yield return new WaitForSeconds(2f);
+
+        moveSpeed = 5.0f;
+    }
+
 }

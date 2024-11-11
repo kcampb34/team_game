@@ -62,7 +62,7 @@ public class MenuOptions : MonoBehaviour
                 SceneManager.LoadScene("Chocolate Arcade");
                 break;
             case 3:
-                SceneManager.LoadScene("Frog Manufacturing Complex Facility");
+                SceneManager.LoadScene("Frog Manufacturing ComplexFacility");
                 break;
             default:
                 Debug.LogError("Invalid square selection!");
